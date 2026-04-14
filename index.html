@@ -1,400 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brian Barongo - IT Support Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script>
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  </script>
-  <style>
-    :root {
-      --color-bg: #ffffff;
-      --color-text: #171717;
-      --color-text-muted: #666666;
-      --color-text-light: #808080;
-      --color-border: rgba(0, 0, 0, 0.08);
-      --color-accent-blue: #0070f3;
-      --color-pill-bg: #fafafa;
-      --shadow-border: 0px 0px 0px 1px var(--color-border);
-      --shadow-card-inner: 0px 0px 0px 1px #fafafa inset;
-      --shadow-card: var(--shadow-border), 0px 2px 4px rgba(0,0,0,0.04), var(--shadow-card-inner);
-      --shadow-card-hover: var(--shadow-border), 0px 4px 8px rgba(0,0,0,0.06), var(--shadow-card-inner);
-    }
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brian Barongo | Applied AI + Infrastructure Portfolio</title>
+    <meta name="description" content="Portfolio of Brian Barongo — IT Support Engineer, Infrastructure Specialist, and Data/ML Developer building practical AI and automation systems." />
+    <meta property="og:title" content="Brian Barongo Portfolio" />
+    <meta property="og:description" content="Applied AI + infrastructure projects built for real operations." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#090b10" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
-    :root[data-theme="dark"] {
-      --color-bg: #0a0a0a;
-      --color-text: #ededed;
-      --color-text-muted: #a1a1aa;
-      --color-text-light: #71717a;
-      --color-border: rgba(255, 255, 255, 0.14);
-      --color-pill-bg: #171717;
-      --shadow-card-inner: 0px 0px 0px 1px rgba(255, 255, 255, 0.05) inset;
-      --shadow-card: var(--shadow-border), 0px 2px 4px rgba(0,0,0,0.5), var(--shadow-card-inner);
-      --shadow-card-hover: var(--shadow-border), 0px 4px 8px rgba(0,0,0,0.8), var(--shadow-card-inner);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Geist', system-ui, -apple-system, sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 64px 24px;
-    }
-
-    header {
-      margin-bottom: 64px;
-    }
-    
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      font-size: 48px;
-      font-weight: 600;
-      letter-spacing: -2.4px;
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-
-    .subtitle {
-      font-size: 20px;
-      color: var(--color-text-muted);
-    }
-
-    .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 14px;
-      color: var(--color-text-muted);
-    }
-
-    .contact-info a {
-      color: var(--color-text-muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .contact-info a:hover {
-      color: var(--color-text);
-    }
-
-    .theme-toggle {
-      background: transparent;
-      border: 1px solid var(--color-border);
-      color: var(--color-text-muted);
-      cursor: pointer;
-      font-family: 'Geist Mono', monospace;
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-    }
-    
-    .theme-toggle:hover {
-      background: var(--color-pill-bg);
-      color: var(--color-text);
-    }
-
-    section {
-      margin-bottom: 48px;
-    }
-
-    h2 {
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: -0.96px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    h2::after {
-      content: '';
-      flex-grow: 1;
-      height: 1px;
-      background-color: var(--color-border);
-    }
-
-    .card {
-      background: var(--color-bg);
-      border-radius: 8px;
-      padding: 24px;
-      box-shadow: var(--shadow-card);
-      margin-bottom: 16px;
-      transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-card-hover);
-    }
-
-    .job-title {
-      font-weight: 500;
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-
-    .job-meta {
-      font-size: 14px;
-      color: var(--color-text-muted);
-      margin-bottom: 16px;
-      font-family: 'Geist Mono', monospace;
-    }
-
-    ul {
-      list-style-type: none;
-    }
-
-    li {
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-      color: var(--color-text-muted);
-    }
-
-    li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--color-border);
-      font-family: 'Geist Mono', monospace;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .skill-category {
-      font-weight: 500;
-      margin-bottom: 8px;
-      font-size: 14px;
-    }
-
-    .pill-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .pill {
-      background: var(--color-pill-bg);
-      color: var(--color-text);
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-family: 'Geist Mono', monospace;
-      box-shadow: var(--shadow-border);
-      transition: background-color 0.3s, color 0.3s;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="header-top">
-        <div>
-          <h1>Brian Barongo</h1>
-          <p class="subtitle">IT Support Engineer & Infrastructure Specialist</p>
+    <header class="topbar">
+      <div class="container nav-row reveal">
+        <a class="brand" href="#main-content">BB</a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#story">Story</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="actions-right">
+          <button id="theme-toggle" class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Toggle color theme">
+            <span class="theme-switch-track" aria-hidden="true">
+              <span class="theme-icon sun" aria-hidden="true">☀</span>
+              <span class="theme-icon moon" aria-hidden="true">☾</span>
+              <span class="theme-switch-thumb" aria-hidden="true"></span>
+            </span>
+          </button>
+          <a class="btn btn-outline" href="mailto:nyakerib@gmail.com">Work with me</a>
         </div>
-        <button id="theme-toggle" class="theme-toggle">
-          <span class="icon">🌓</span> Theme
-        </button>
-      </div>
-      <div class="contact-info">
-        <span>+254****9075</span>
-        <span>•</span>
-        <a href="mailto:nyakerib@gmail.com">nyakerib@gmail.com</a>
-        <span>•</span>
-        <a href="#">LinkedIn</a>
       </div>
     </header>
 
-    <section>
-      <p style="color: var(--color-text-muted); font-size: 16px;">
-        I combine deep technical mastery with strategic business acumen to align technology investments with organizational objectives. An experienced and proactive IT Support Engineer with over 7 years of progressive experience supporting and optimizing large-scale IT environments. Proven expertise in Windows Server Administration, cloud technologies including Azure and Microsoft 365, and enforcing IT security policies.
-      </p>
-    </section>
-
-    <section>
-      <h2>Featured Projects</h2>
-      
-      <div class="card">
-        <h3 class="job-title"><a href="http://129.146.1.171:8501" target="_blank" style="text-decoration: none; color: inherit;">Nairobi IoT Air Quality + Explainable Anomaly Detection</a></h3>
-        <div class="job-meta">Streamlit | FastAPI | Isolation Forest | Docker | Nginx | Systemd</div>
-        <ul>
-          <li>Production-style IoT air quality monitoring platform using live PM2.5/PM10 feeds with explainable anomaly detection.</li>
-          <li>Includes AQI context, historical trends, validation tags, anomaly driver explanations, and actionable response playbooks.</li>
-          <li>Deployed on VPS with Docker, managed by systemd, and served through Nginx reverse proxy.</li>
-          <li><a href="https://github.com/nyaks/nairobi-iot-anomaly-detector" target="_blank" style="color: var(--color-accent-blue); text-decoration: underline;">View Source on GitHub</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3 class="job-title"><a href="http://129.146.1.171:8501" target="_blank" style="text-decoration: none; color: inherit;">Sentiment Analysis Dashboard</a></h3>
-        <div class="job-meta">Streamlit | Hugging Face Transformers | Plotly | NLP</div>
-        <ul>
-          <li>Interactive web dashboard for single-text and CSV-based sentiment analysis using a RoBERTa model.</li>
-          <li>Includes confidence scoring, distribution analytics, time-series sentiment trends, and downloadable enriched output.</li>
-          <li>Supports source and category comparison views for practical customer feedback and social monitoring workflows.</li>
-          <li><a href="https://github.com/nyaks/sentiment-analysis-dashboard" target="_blank" style="color: var(--color-accent-blue); text-decoration: underline;">View Source on GitHub</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3 class="job-title"><a href="http://129.146.1.171:8000" target="_blank" style="text-decoration: none; color: inherit;">Image Classification API</a></h3>
-        <div class="job-meta">FastAPI | PyTorch | ResNet-18 | REST API</div>
-        <ul>
-          <li>Production-oriented API service for CIFAR-10 image classification with top-k predictions and confidence scores.</li>
-          <li>Implements API key authentication, request validation, and rate limiting for secure endpoint exposure.</li>
-          <li>Provides health, classes, and inference endpoints with a browser-accessible frontend.</li>
-          <li><a href="https://github.com/nyaks/image-classification-api" target="_blank" style="color: var(--color-accent-blue); text-decoration: underline;">View Source on GitHub</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3 class="job-title"><a href="http://129.146.1.171:8502" target="_blank" style="text-decoration: none; color: inherit;">Sales Analytics Pipeline</a></h3>
-        <div class="job-meta">ETL | Streamlit | SQLite | Forecasting</div>
-        <ul>
-          <li>End-to-end sales data pipeline with synthetic generation, ETL transformations, and analytics-ready SQLite tables.</li>
-          <li>Delivers CLV, cohort retention, regional breakdowns, product performance, and month-over-month growth metrics.</li>
-          <li>Includes dashboard forecasting views for forward-looking revenue planning.</li>
-          <li><a href="https://github.com/nyaks/sales-analytics-pipeline" target="_blank" style="color: var(--color-accent-blue); text-decoration: underline;">View Source on GitHub</a></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3 class="job-title"><a href="http://129.146.1.171:8503" target="_blank" style="text-decoration: none; color: inherit;">Real-Time Sensor Dashboard</a></h3>
-        <div class="job-meta">Streamlit | Isolation Forest | IoT | Anomaly Detection</div>
-        <ul>
-          <li>Live IoT monitoring interface with streaming telemetry and anomaly scoring in near real time.</li>
-          <li>Uses an Isolation Forest model and scaler pipeline to detect abnormal sensor behavior.</li>
-          <li>Provides alerting, anomaly heatmaps, event logs, and multi-metric visual diagnostics.</li>
-          <li><a href="https://github.com/nyaks/realtime-sensor-dashboard" target="_blank" style="color: var(--color-accent-blue); text-decoration: underline;">View Source on GitHub</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>Experience</h2>
-      
-      <div class="card">
-        <h3 class="job-title">ICT Officer</h3>
-        <div class="job-meta">Kisii County, Kenya | July 2016 – Current</div>
-        <ul>
-          <li>Managed enterprise-scale IT infrastructure and network operations for a user base exceeding 2,500 employees.</li>
-          <li>Maintained ICT systems across multiple departments, minimising breakdowns and ensuring operational continuity.</li>
-          <li>Provided technical mentorship and created detailed documentation on operational procedures.</li>
-          <li>Managed the procurement and deployment of IT equipment and software licenses.</li>
-          <li>Enforced access management and security policies, contributing to system integrity and data protection.</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3 class="job-title">IT Support</h3>
-        <div class="job-meta">KEMRI/ CDC, Nairobi – Kenya | July 2015 – June 2016</div>
-        <ul>
-          <li>Provided technical support to end users for Linux and Windows systems, minimising operational disruptions.</li>
-          <li>Troubleshot network incidents and hardware/software faults, ensuring timely resolution.</li>
-          <li>Supported network configurations and connectivity for user departments.</li>
-          <li>Standardised troubleshooting procedures, enabling faster identification of system weaknesses.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2>Education</h2>
-      <div class="card">
-        <h3 class="job-title">MSc Big Data Management and Analytics</h3>
-        <div class="job-meta">Griffith College | 2025</div>
-      </div>
-      <div class="card">
-        <h3 class="job-title">BSc Information Technology</h3>
-        <div class="job-meta">Jomo Kenyatta University of Agriculture and Technology | 2014</div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Technical Skills</h2>
-      <div class="card">
-        <div class="skills-grid">
-          <div>
-            <div class="skill-category">Languages</div>
-            <div class="pill-container">
-              <span class="pill">Python</span>
-              <span class="pill">SQL</span>
-              <span class="pill">Bash</span>
-              <span class="pill">C</span>
-              <span class="pill">Java</span>
-              <span class="pill">HTML/CSS</span>
-              <span class="pill">JavaScript</span>
-              <span class="pill">R</span>
-            </div>
+    <main id="main-content">
+      <section class="hero section">
+        <div class="container hero-wrap reveal">
+          <p class="intro">Hello, I am <a href="#contact">Brian Barongo</a></p>
+          <h1>
+            I build reliable AI and infrastructure systems
+            <span>that teams can actually run.</span>
+          </h1>
+          <p class="lead">
+            I work at the intersection of IT operations, infrastructure, and applied ML to ship practical systems:
+            stable services, explainable dashboards, and automations that reduce manual work.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#projects">View projects</a>
+            <a class="btn btn-text" href="#story">Read story mode</a>
+            <a class="btn btn-text" href="http://129.146.1.171:8052/demo">Live demo</a>
           </div>
-          <div>
-            <div class="skill-category">Tools</div>
-            <div class="pill-container">
-              <span class="pill">Git</span>
-              <span class="pill">Docker</span>
-              <span class="pill">AWS</span>
-              <span class="pill">Azure</span>
-              <span class="pill">Tableau</span>
-            </div>
-          </div>
-          <div>
-            <div class="skill-category">Systems</div>
-            <div class="pill-container">
-              <span class="pill">Microsoft Server</span>
-              <span class="pill">Linux</span>
-              <span class="pill">Citrix</span>
-              <span class="pill">Microsoft Dynamics</span>
-            </div>
+          <div class="meta-line">
+            <span>Applied AI Builder</span>
+            <span class="dot">•</span>
+            <span>Infrastructure Specialist</span>
+            <span class="dot">•</span>
+            <span>IT Support Engineer</span>
           </div>
         </div>
+      </section>
+
+      <section id="story" class="section section-line">
+        <div class="container">
+          <h2 class="reveal">Story mode</h2>
+          <p class="section-copy reveal">How I approach problems from first signal to operational outcome.</p>
+
+          <div class="story-grid">
+            <article class="story-card reveal">
+              <p class="story-step">01 · Diagnose</p>
+              <h3>Find the real bottleneck</h3>
+              <p>I start with process mapping, data checks, and service visibility so we fix the right problem first.</p>
+            </article>
+            <article class="story-card reveal">
+              <p class="story-step">02 · Design</p>
+              <h3>Build for constraints</h3>
+              <p>I design around existing tools, uptime requirements, and team capability to keep delivery realistic.</p>
+            </article>
+            <article class="story-card reveal">
+              <p class="story-step">03 · Deploy</p>
+              <h3>Ship with safeguards</h3>
+              <p>Every release includes runbooks, fallback paths, and measurable KPIs so operations stay controlled.</p>
+            </article>
+            <article class="story-card reveal">
+              <p class="story-step">04 · Improve</p>
+              <h3>Iterate from evidence</h3>
+              <p>I tighten workflows using observed metrics, user feedback, and failure analysis, not assumptions.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section section-line">
+        <div class="container">
+          <h2 class="reveal">Experience</h2>
+          <p class="section-copy reveal">
+            End-to-end ownership from architecture and implementation to deployment, monitoring, and iteration.
+          </p>
+
+          <div class="timeline">
+            <article class="timeline-item reveal">
+              <div class="timeline-head">
+                <h3>Independent Applied AI + Infrastructure Engineer</h3>
+                <p>2024 — Present</p>
+              </div>
+              <ul>
+                <li>Deployed multi-service portfolio workloads on Oracle Cloud VPS.</li>
+                <li>Implemented practical MLOps patterns for analytics APIs and monitoring.</li>
+                <li>Delivered explainable dashboards with KPI-level operational recommendations.</li>
+              </ul>
+            </article>
+
+            <article class="timeline-item reveal">
+              <div class="timeline-head">
+                <h3>IT Support & Systems Operations</h3>
+                <p>Professional Track</p>
+              </div>
+              <ul>
+                <li>Resolved infrastructure and endpoint issues with uptime-first execution.</li>
+                <li>Standardized service setup, firewall routing, and secure access workflows.</li>
+                <li>Improved technical adoption by translating system complexity into usable operations.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section section-line">
+        <div class="container">
+          <h2 class="reveal">Featured Projects</h2>
+          <p class="section-copy reveal">Production-oriented systems designed for measurable business impact.</p>
+
+          <div class="project-grid">
+            <article class="project-card reveal">
+              <p class="project-index">01</p>
+              <h3>Business-in-a-Box Analytics Platform</h3>
+              <p>
+                End-to-end SME analytics and automation stack with warehouse modeling, dbt transformations,
+                KPI reporting, and operational playbooks.
+              </p>
+              <div class="tags">
+                <span>PostgreSQL</span><span>dbt</span><span>Automation</span><span>Operational Analytics</span>
+              </div>
+              <a class="project-link" href="/projects/business-in-a-box.html">View details</a>
+            </article>
+
+            <article class="project-card highlighted reveal">
+              <p class="project-index">02</p>
+              <h3>Career-Ops Workflow Clone</h3>
+              <p>
+                Agent-driven career operations stack configured for role scanning, fit evaluation,
+                and document generation workflows.
+              </p>
+              <div class="tags">
+                <span>Node.js</span><span>Playwright</span><span>Agent Workflows</span><span>Automation</span>
+              </div>
+              <a class="project-link" href="/projects/career-ops-clone.html">View details</a>
+            </article>
+
+            <article class="project-card reveal">
+              <p class="project-index">03</p>
+              <h3>Network Security Analyzer</h3>
+              <p>
+                Security diagnostics tooling that surfaces exposure risk, service posture,
+                and remediation priorities.
+              </p>
+              <div class="tags">
+                <span>Python</span><span>Security Ops</span><span>Monitoring</span><span>Troubleshooting</span>
+              </div>
+              <a class="project-link" href="/projects/network-security-analyzer.html">View details</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="capabilities" class="section section-line">
+        <div class="container">
+          <h2 class="reveal">Capabilities</h2>
+          <p class="section-copy reveal">Execution areas I apply across client and internal systems.</p>
+          <div class="chip-grid reveal">
+            <span>Infrastructure deployment on VPS</span>
+            <span>API and service orchestration</span>
+            <span>Data pipelines and transformation</span>
+            <span>Explainable KPI dashboards</span>
+            <span>Security-first operations</span>
+            <span>Automation and agent workflows</span>
+            <span>MLOps and model integration</span>
+            <span>Technical documentation and SOPs</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container contact-box reveal">
+          <h2>Let us build something useful.</h2>
+          <p>
+            I am available for infrastructure, IT operations, analytics automation, and applied AI project delivery.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:nyakerib@gmail.com">nyakerib@gmail.com</a>
+            <a href="https://github.com/nyaks" target="_blank" rel="noreferrer">github.com/nyaks</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-row">
+        <p>© <span id="year"></span> Brian Barongo</p>
+        <a href="#main-content">Back to top</a>
       </div>
-    </section>
-  </div>
-  
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const isDark = currentTheme === 'dark' || (!currentTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      const newTheme = isDark ? 'light' : 'dark';
-      
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-    });
-  </script>
-</body>
+    </footer>
+
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
