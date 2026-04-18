@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherBet — Polymarket Weather Trading Bot</title>
+    <meta name="description" content="WeatherBet is an automated weather-market trading system with EV filtering, Kelly sizing, risk controls, and Dockerized deployment." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <main class="project-page">
+      <div class="container reveal">
+        <a class="back-link" href="/">← Back to portfolio</a>
+        <h1>WeatherBet — Polymarket Weather Trading Bot</h1>
+        <p class="project-lead">
+          Automated weather-market trading engine designed for signal quality, strict risk controls, and operational reliability.
+          Built in Python with market data integration, forecast fusion, and deployment-ready runtime packaging.
+        </p>
+
+        <section>
+          <h2>Overview</h2>
+          <p>
+            WeatherBet scans weather prediction markets, maps forecast signals to exact temperature buckets,
+            and executes strategy decisions using expected value and position-sizing controls.
+            The architecture supports both paper-mode operation and guarded live-mode behavior.
+          </p>
+        </section>
+
+        <section>
+          <h2>Core capabilities</h2>
+          <ul>
+            <li>Forecast fusion across multiple sources with airport-specific market alignment.</li>
+            <li>Expected value filtering and Kelly-based bet sizing with max-bet constraints.</li>
+            <li>Stop-loss, trailing stop, and forecast-change exit logic.</li>
+            <li>Persistent JSON state and trade records for auditability and post-run analysis.</li>
+            <li>Geoblock-aware live-mode safeguards to prevent repeated failed order attempts.</li>
+            <li>Dockerized deployment using Dockerfile + Compose for reproducible migration.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Tech stack</h2>
+          <p>Python, requests, py-clob-client, web3, dotenv, Docker, Docker Compose.</p>
+        </section>
+
+        <section>
+          <h2>Repository</h2>
+          <p><a href="https://github.com/nyaks/weatherbot" target="_blank" rel="noreferrer">github.com/nyaks/weatherbot</a></p>
+        </section>
+      </div>
+    </main>
+    <script src="../assets/main.js"></script>
+  </body>
+</html>
